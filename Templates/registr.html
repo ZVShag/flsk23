@@ -1,0 +1,41 @@
+{% extends 'basepage.html' %}
+
+{% block title %}
+Страница добавление элемента
+{% endblock %}
+
+{% block body %}
+<div class="container"><main class="form-signin w-100 m-auto">
+  <form method="post">
+
+    <h1 class="h3 mb-3 fw-normal">Введите учетные данные</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
+      <label for="floatingInput">Имя пользователя</label>
+    </div>
+     <div class="form-floating">
+      <input type="text" class="form-control" id="sname" name="sname" placeholder="Фамилия">
+      <label for="floatingInput">Фамилия пользователя</label>
+    </div>
+     <div class="form-floating">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Адрес эл.почты">
+      <label for="floatingInput">Адрес эл.почты</label>
+    </div>
+     <div class="form-floating">
+      <input type="text" class="form-control" id="login" name="login" placeholder="Логин">
+      <label for="floatingInput">Логин</label>
+    </div>
+      <br class="form-floating">
+      <input type="password" class="form-control" id="password" name="password" placeholder="пароль">
+      <label for="floatingInput">Пароль</label>
+    <br class="form-floating">
+      <input type="password" class="form-control" id="passwordanother" name="passwordanother" placeholder="повтори пароль">
+      <label for="floatingInput">Повтори пароль</label>
+
+          <button class="btn btn-primary w-100 py-2" type="submit">Регистрация</button>
+  </form>
+</main></div>
+
+
+{% endblock %}
