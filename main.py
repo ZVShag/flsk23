@@ -48,10 +48,10 @@ def registr():
             password1=request.form['password']
             password2 = request.form['passwordanother']
             if password1==password2 and Uniq(login,email): # логин и почта уникальны
-
+                Insert_user(name,sname,email,login,password1)
             return redirect('/')
         else:
-            return render_template('signin.html')
+            return render_template('registr.html')
 
 
 

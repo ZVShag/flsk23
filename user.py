@@ -1,4 +1,12 @@
 import psycopg2
+from werkzeug.security import generate_password_hash,check_password_hash
+
+class user:
+    def __init__(self,login,password):
+        self.login=login
+        self.password=generate_password_hash(password)
+    def Check(self):
+        return check_password_hash(self.password)
 
 def Insert_user(name,sname,email,login,password):
     connection=psycopg2.connect(
@@ -7,9 +15,10 @@ def Insert_user(name,sname,email,login,password):
         password='postgres',
         database='book'
     )
+    us=user(login,password)
     with connection.cursor() as cursor:
         request = "Insert into users(name,sname,email,login,password) Values(%s,%s,%s,%s,%s)"
-        record = [name, sname,email,login,password]
+        record = [name, sname,email,us.login,us.password]
         cursor.execute(request, record)
         connection.commit()
 
@@ -25,4 +34,3 @@ def Uniq(login,email):
         record=[login,email]
         cursor.execute(request,record)
         return not(type(cursor.fetchone())=='NoneType')
-print(Uniq('fdtopo','fedya@proton.com'))
