@@ -6,28 +6,28 @@
 
 {% block body %}
 <div class="container"><main class="form-signin w-100 m-auto">
-  <form>
+  <form method="post">
 
     <h1 class="h3 mb-3 fw-normal">Введите описание новой книги</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="name" placeholder="название книги">
+      <input type="text" class="form-control" id="name" name="name" placeholder="название книги">
       <label for="floatingInput">Название книги</label>
     </div>
       <div class="form-floating">
-      <input type="text" class="form-control" id="author" placeholder="автор книги">
+      <input type="text" class="form-control" id="author" name="author" placeholder="автор книги">
       <label for="floatingInput">Автор книги</label>
     </div>
       <div class="form-floating">
-      <input type="text" class="form-control" id="about" placeholder="жанр">
+      <input type="text" class="form-control" id="zhanr" name="zhanr" placeholder="жанр">
       <label for="floatingInput">Жанр</label>
     </div>
       <div class="form-floating">
-      <input type="text" class="form-control" id="count" placeholder="Год публикации">
+      <input type="text" class="form-control" id="count" name="count" placeholder="Количество">
       <label for="floatingInput">Год публикации</label>
     </div>
         <div class="form-floating">
-      <input type="text" class="form-control" id="price" placeholder="Цена">
+      <input type="text" class="form-control" id="price" name="price" placeholder="Цена">
       <label for="floatingInput">Цена</label>
     </div>
     <button class="btn btn-primary w-100 py-2" type="submit">Добавить книгу в базу</button>

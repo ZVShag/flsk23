@@ -1,8 +1,6 @@
 from flask import Flask,render_template,url_for,request,redirect
-from flask_sqlalchemy import SQLAlchemy
-from book import Book
+from insert_book import Insert_book
 
-import psycopg2
 app = Flask(__name__)
 
 
@@ -18,9 +16,22 @@ def first():
     return render_template('enter.html')
 
 @app.route('/add',methods=['POST','GET'])
-def Add_Book():
-    pass
+def add_book():
+        if request.method=='POST':
+            name=request.form['name']
+            author=request.form['author']
+            zhanr=request.form['zhanr']
+            count=request.form['count']
+            price=request.form['price']
+
+            Insert_book(name,author,zhanr,count,price)
+            return redirect('/')
+        else:
+            return render_template('add.html')
+
+
 
 
 if __name__=='__main__':
     app.run(debug=True)
+
