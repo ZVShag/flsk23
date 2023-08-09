@@ -15,7 +15,6 @@ def Insert_user(name,sname,email,login,password):
         password='postgres',
         database='book'
     )
-    us=user(login,password)
     with connection.cursor() as cursor:
         request = "Insert into users(name,sname,email,login,password) Values(%s,%s,%s,%s,%s)"
         record = [name, sname,email,us.login,us.password]
@@ -34,3 +33,17 @@ def Uniq(login,email):
         record=[login,email]
         cursor.execute(request,record)
         return not(type(cursor.fetchone())=='NoneType')
+
+def Chek(login,password):
+    connection = psycopg2.connect(
+        host='127.0.0.1',
+        user='postgres',
+        password='postgres',
+        database='book'
+    )
+
+    with connection.cursor() as cursor:
+        request='Select password from users where login=%s;'
+        record=login
+        cursor.execute(request,record)
+        return not(type(cursor.fetchone())=='NoneType') and check_password_hash(cursor.fetchone[0],password)

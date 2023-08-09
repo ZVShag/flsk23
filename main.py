@@ -34,6 +34,7 @@ def signin():
         if request.method=='POST':
             login=request.form['login']
             password=request.form['password']
+
             return redirect('/')
         else:
             return render_template('signin.html')
