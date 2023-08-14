@@ -17,7 +17,7 @@ def Insert_user(name,sname,email,login,password):
     )
     with connection.cursor() as cursor:
         request = "Insert into users(name,sname,email,login,password) Values(%s,%s,%s,%s,%s)"
-        record = [name, sname,email,us.login,us.password]
+        record = [name, sname,email,login,password]
         cursor.execute(request, record)
         connection.commit()
 
@@ -43,7 +43,7 @@ def Chek(login,password):
     )
 
     with connection.cursor() as cursor:
-        request='Select password from users where login=%s;'
-        record=login
+        request='Select password from users where login=%s and password=%s;'
+        record=[login,password]
         cursor.execute(request,record)
-        return not(type(cursor.fetchone())=='NoneType') and check_password_hash(cursor.fetchone[0],password)
+        return not(type(cursor.fetchone())=='NoneType')

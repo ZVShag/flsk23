@@ -1,6 +1,6 @@
 from flask import Flask,render_template,url_for,request,redirect
 from insert_book import Insert_book
-from user import Insert_user,Uniq
+from user import Insert_user,Uniq,Chek
 app = Flask(__name__)
 
 
@@ -34,8 +34,8 @@ def signin():
         if request.method=='POST':
             login=request.form['login']
             password=request.form['password']
-
-            return redirect('/')
+            if Chek(login,password):
+                return redirect('/')
         else:
             return render_template('signin.html')
 
