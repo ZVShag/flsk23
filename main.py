@@ -1,5 +1,5 @@
 from flask import Flask,render_template,url_for,request,redirect,make_response
-from insert_book import Insert_book,Get_allbook
+from insert_book import Insert_book,Get_allbook,Getbook
 from user import Insert_user,Uniq,Chek
 app = Flask(__name__)
 
@@ -57,6 +57,11 @@ def registr():
 def allbook():
     bks=Get_allbook()
     return render_template('allbook.html',bks=bks)
+
+@app.route('/allbook/<int:id>')
+def getbook(id):
+    bk=Getbook(id)
+    return render_template('abook.html',bk=bk)
 
 if __name__=='__main__':
     app.run(debug=True)

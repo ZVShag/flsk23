@@ -9,8 +9,9 @@
     <h1>Все книги</h1>
     {% for element in bks %}
     <div class="alert alert-info">
-        <h2>{{ element[0] }}</h2>
-        <p>{{ element[1] }}</p>
+        <h2>{{ element[1] }}</h2>
+        <p>{{ element[2] }}</p>
+        <a href="/allbook/{{element[0]}}" class="btn btn-warning">Подробнее</a>
     </div>
     {% endfor %}
 </div>

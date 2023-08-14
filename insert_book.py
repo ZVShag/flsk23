@@ -31,4 +31,18 @@ def Get_allbook():
         )
         return cursor.fetchall()
         connection.commit()
-print(Get_allbook())
+
+def Getbook(id):
+    connection = psycopg2.connect(
+        host='127.0.0.1',
+        user="postgres",
+        password="postgres",
+        database='book'
+    )
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+            f'Select * from books where id={id};'
+        )
+        return cursor.fetchone()
+        connection.commit()
