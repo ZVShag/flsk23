@@ -41,9 +41,12 @@ def Chek(login,password):
         password='postgres',
         database='book'
     )
+    try:
+        with connection.cursor() as cursor:
+            request='Select password from users where login=%s and password=%s;'
+            record=[login,password]
+            cursor.execute(request,record)
+            return (len(cursor.fetchone())==1)
+    except:
+        return False
 
-    with connection.cursor() as cursor:
-        request='Select password from users where login=%s and password=%s;'
-        record=[login,password]
-        cursor.execute(request,record)
-        return not(type(cursor.fetchone())=='NoneType')

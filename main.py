@@ -1,5 +1,5 @@
-from flask import Flask,render_template,url_for,request,redirect
-from insert_book import Insert_book
+from flask import Flask,render_template,url_for,request,redirect,make_response
+from insert_book import Insert_book,Get_allbook
 from user import Insert_user,Uniq,Chek
 app = Flask(__name__)
 
@@ -31,11 +31,10 @@ def add_book():
 
 @app.route('/signin',methods=['POST','GET'])
 def signin():
-        if request.method=='POST':
-            login=request.form['login']
-            password=request.form['password']
-            if Chek(login,password):
-                return redirect('/')
+        if request.method=='POST' and Chek(request.form['login'],request.form['password']):
+            response=make_response(render_template('index.html'))
+            response.set_cookie('loged','True')
+            return response
         else:
             return render_template('signin.html')
 
@@ -54,7 +53,10 @@ def registr():
         else:
             return render_template('registr.html')
 
-
+@app.route('/allbook')
+def allbook():
+    bks=Get_allbook()
+    return render_template('allbook.html',bks=bks)
 
 if __name__=='__main__':
     app.run(debug=True)

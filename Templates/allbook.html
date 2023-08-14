@@ -1,0 +1,17 @@
+{% extends 'basepage.html' %}
+
+{% block title %}
+Все книги из католога
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Все книги</h1>
+    {% for element in bks %}
+    <div class="alert alert-info">
+        <h2>{{ element[0] }}</h2>
+        <p>{{ element[1] }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
