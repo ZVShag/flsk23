@@ -4,7 +4,9 @@ from user import Insert_user,Uniq,Chek
 app = Flask(__name__)
 
 
-
+@app.errorhandler(404)
+def notfound(error):
+    return render_template('404.html'),404
 
 
 @app.route('/')

@@ -1,0 +1,16 @@
+{% extends 'basepage.html' %}
+
+{% block title %}
+Страница вход
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="h3 mb-3 fw-normal">Страница к которой вы обратились не существует</h1>
+    <div class="container">
+        <h1 class="h3 mb-3 fw-normal">Вы можете перейти на <a href="{{url_for('index')}}"> главную </a> страницу</h1>
+    </div>
+</div>
+
+
+{% endblock %}
