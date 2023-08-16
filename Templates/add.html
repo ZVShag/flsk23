@@ -6,8 +6,10 @@
 
 {% block body %}
 <div class="container"><main class="form-signin w-100 m-auto">
+  {% for message in get_flashed_message() %}
+  <div class="flash" > {{message}}</div>
+  {% endfor %}
   <form method="post">
-
     <h1 class="h3 mb-3 fw-normal">Введите описание новой книги</h1>
 
     <div class="form-floating">

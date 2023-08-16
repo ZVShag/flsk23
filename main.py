@@ -1,8 +1,8 @@
-from flask import Flask,render_template,url_for,request,redirect,make_response
+from flask import Flask,render_template,url_for,request,redirect,make_response,flash,session
 from insert_book import Insert_book,Get_allbook,Getbook
 from user import Insert_user,Uniq,Chek
 app = Flask(__name__)
-
+app.config['SECRET_KEY']='cnkjasnckjsacnkjsa6t75326674gfbgf'
 
 @app.errorhandler(404)
 def notfound(error):
@@ -25,20 +25,29 @@ def add_book():
             zhanr=request.form['zhanr']
             count=request.form['count']
             price=request.form['price']
-
-            Insert_book(name,author,zhanr,count,price)
-            return redirect('/')
+            if Insert_book(name,author,zhanr,count,price):
+                flash('Запись успешно добавлена')
+            else:
+                flash('При вводе данных произошла ошибка, попробуйте снова')
+            return render_template('add.html')
         else:
             return render_template('add.html')
 
 @app.route('/signin',methods=['POST','GET'])
 def signin():
-        if request.method=='POST' and Chek(request.form['login'],request.form['password']):
-            response=make_response(render_template('index.html'))
-            response.set_cookie('loged','True')
-            return response
-        else:
-            return render_template('signin.html')
+    if 'login' in session:
+        return redirect(url_for('profile',username=session['login']))
+    elif request.method=='POST':
+        login=request.form['login']
+        password=request.form['password']
+        if Chek(login,password):
+            session['login']=login
+            return redirect(url_for('profile', username=session['login']))
+
+
+
+    else:
+        return render_template('signin.html')
 
 @app.route('/registr',methods=['POST','GET'])
 def registr():
